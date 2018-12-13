@@ -16,7 +16,7 @@ export default class Index extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://192.168.0.36:63/todoapp')
+        axios.get('https://apps-todos.herokuapp.com/todoapp')
         .then((res)=>{
             this.setState({items: res.data})
         })  
@@ -28,7 +28,7 @@ export default class Index extends Component{
         if(this.state.text.length>0){
             axios({
                 method: 'post',
-                url: 'http://192.168.0.36:63/todoapp/new',
+                url: 'https://apps-todos.herokuapp.com/todoapp/new',
                 data: {
                   title: this.state.text,
                   details: ' '
@@ -42,7 +42,7 @@ export default class Index extends Component{
             alert('Please type your list')
         }
      } else {
-        urldata = 'http://192.168.0.36:63/todoapp/'+this.state.id+'/up'
+        urldata = 'https://apps-todos.herokuapp.com/todoapp/'+this.state.id+'/up'
         axios.put(urldata, {title: this.state.text})
         .then( res =>{
             this.componentDidMount();
@@ -56,7 +56,7 @@ export default class Index extends Component{
     }
 
     handleDelete (id){
-        axios.delete('http://192.168.0.36:63/todoapp/'+ id +'/del')
+        axios.delete('https://apps-todos.herokuapp.com/todoapp/'+ id +'/del')
         .then(this.componentDidMount())
         .then(alert('Succes Deleted'))
         .then(this.setState({text: ''}))
